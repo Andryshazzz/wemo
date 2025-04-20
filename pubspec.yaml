@@ -39,9 +39,3 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
 
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "assets/images/wemo.png"
-  min_sdk_android: 21
-
