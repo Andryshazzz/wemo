@@ -35,6 +35,7 @@ class _CoinsList extends StatefulWidget {
 
 class _CoinsListState extends State<_CoinsList> {
   final ScrollController _controller = ScrollController();
+  final double _basePadding = 12;
 
   @override
   void dispose() {
@@ -45,12 +46,12 @@ class _CoinsListState extends State<_CoinsList> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: EdgeInsets.symmetric(horizontal: _basePadding),
       child: CustomScrollView(
         controller: _controller,
         slivers: [
           SliverPadding(
-            padding: EdgeInsets.all(1),
+            padding: EdgeInsets.all(_basePadding),
             sliver: SliverToBoxAdapter(
               child: Row(
                 children: [
@@ -61,16 +62,18 @@ class _CoinsListState extends State<_CoinsList> {
               ),
             ),
           ),
-          SliverToBoxAdapter(child: PortfolioWidget()),
+          SliverToBoxAdapter(child: PortfolioWidget(price: "22 312.32")),
           SliverPadding(
-            padding: EdgeInsets.only(top: 6),
+            padding: EdgeInsets.only(top: _basePadding / 2),
             sliver: SliverToBoxAdapter(child: BuySellWidget()),
           ),
           SliverPadding(
-            padding: EdgeInsets.only(top: 8, bottom: 14),
+            padding: EdgeInsets.only(top: _basePadding, bottom: _basePadding),
             sliver: SliverToBoxAdapter(child: CoinsExpansionWidget()),
           ),
-          SliverToBoxAdapter(child: CoinsExpansionWidget()),
+          SliverToBoxAdapter(
+            child: CurrenciesExpansionWidget(),
+          ),
         ],
       ),
     );

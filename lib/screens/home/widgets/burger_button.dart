@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../theme/theme.dart';
@@ -8,11 +8,22 @@ class BurgerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(maxHeight: 30),
-      child: DecoratedBox(
-        decoration: BoxDecoration(color: light4),
-        child: SvgPicture.asset(ProjectIcons.burger),
+    final radius = BorderRadius.all(Radius.circular(12));
+    return ClipRRect(
+      borderRadius: radius,
+      child: InkWell(
+        onTap: () {},
+        borderRadius: radius,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 30, maxWidth: 42),
+          child: DecoratedBox(
+            decoration: BoxDecoration(color: Color(0xffFEFEFE)),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+              child: SvgPicture.asset(ProjectIcons.burger),
+            ),
+          ),
+        ),
       ),
     );
   }

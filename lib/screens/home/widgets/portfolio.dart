@@ -4,20 +4,21 @@ import 'package:flutter/material.dart';
 import '../../../theme/theme.dart';
 
 class PortfolioWidget extends StatelessWidget {
-  const PortfolioWidget({super.key});
+  final String price;
+
+  const PortfolioWidget({super.key, required this.price});
 
   @override
   Widget build(BuildContext context) {
-    final String price = "22 312.32";
+    final _price = price;
+    const radius = BorderRadius.all(Radius.circular(12));
     return ClipRRect(
-      borderRadius: BorderRadius.all(Radius.circular(12)),
+      borderRadius: radius,
       child: InkWell(
         onTap: () {},
+        borderRadius: radius,
         child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: 200,
-            maxWidth: double.infinity,
-          ),
+          constraints: BoxConstraints(maxHeight: 200),
           child: DecoratedBox(
             decoration: BoxDecoration(color: Color(0xffFEFEFE)),
             child: Padding(
@@ -32,12 +33,12 @@ class PortfolioWidget extends StatelessWidget {
                       style: ProjectTextStyles.h1,
                       children: [
                         TextSpan(
-                          text: price.split('.')[0],
-                          style: const TextStyle(color: black1),
+                          text: _price.split('.')[0],
+                          style: const TextStyle(color: ProjectColors.black),
                         ),
                         TextSpan(
-                          text: '.${price.split('.')[1]}\$',
-                          style: TextStyle(color: grey),
+                          text: '.${_price.split('.')[1]}\$',
+                          style: TextStyle(color: ProjectColors.grey3),
                         ),
                       ],
                     ),
