@@ -32,17 +32,11 @@ class CoinsExpansionWidget extends StatelessWidget {
               builder: (context) {
                 return Text(
                   "See all",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: ProjectTextStyles.p1.copyWith(color: grey),
                 );
               },
             ),
-            title: Text(
-              "Coins",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
-            ),
+            title: Text("Coins", style: ProjectTextStyles.p1),
             children: const [
               Divider(height: 1, thickness: 0.5, color: light7),
               _Coin(name: "Bitcoin", price: "85 317.97"),
@@ -80,11 +74,18 @@ class _Coin extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(name, style: TextStyle(fontSize: 14)),
-                    Text('(BTC)'),
+                    Text(name, style: ProjectTextStyles.h2),
+                    const SizedBox(width: 6),
+                    Text(
+                      '(BTC)',
+                      style: ProjectTextStyles.p1.copyWith(color: grey),
+                    ),
                   ],
                 ),
-                Text('1.23123'),
+                Text(
+                  '1.23123',
+                  style: ProjectTextStyles.sub.copyWith(color: grey),
+                ),
               ],
             ),
             Column(
@@ -92,10 +93,27 @@ class _Coin extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(price, style: TextStyle(fontSize: 19, color: black1)),
+                    Text.rich(
+                      TextSpan(
+                        style: ProjectTextStyles.h2,
+                        children: [
+                          TextSpan(
+                            text: price.split('.')[0],
+                            style: const TextStyle(color: black1),
+                          ),
+                          TextSpan(
+                            text: '.${price.split('.')[1]}\$',
+                            style: TextStyle(color: grey),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-                Text('329.32 (1,03%)', style: TextStyle(color: green)),
+                Text(
+                  '329.32 (1,03%)',
+                  style: ProjectTextStyles.sub.copyWith(color: green),
+                ),
               ],
             ),
           ],

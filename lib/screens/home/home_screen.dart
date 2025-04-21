@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:wemo/screens/home/widgets/buy_sell.dart';
 import 'package:wemo/screens/home/widgets/portfolio.dart';
 
+import '../../theme/theme.dart';
+import 'widgets/burger_button.dart';
 import 'widgets/coins_expansion.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -51,9 +54,9 @@ class _CoinsListState extends State<_CoinsList> {
             sliver: SliverToBoxAdapter(
               child: Row(
                 children: [
-                  Text('Wemo'),
+                  SvgPicture.asset(ProjectIcons.wemo),
                   Spacer(),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.abc)),
+                  BurgerButton(),
                 ],
               ),
             ),

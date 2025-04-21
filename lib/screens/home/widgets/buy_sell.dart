@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../theme/theme.dart';
+
 class BuySellWidget extends StatelessWidget {
   const BuySellWidget({super.key});
 
@@ -35,7 +37,7 @@ class _Button extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Text(text), Icon(icon)],
+                children: [ Icon(icon), Text(text, style: ProjectTextStyles.p1,)],
               ),
             ),
           ),

@@ -29,3 +29,19 @@ const green = Color(0xFF34A40C);
 const red = Color(0xFFDA2828);
 
 const black1 = Color(0xFF000000);
+const grey = Color(0xFF959595);
+
+class ProjectTextStyles {
+  static const h1 = TextStyle(fontFamily: 'Geist', fontSize: 28);
+  static const h2 = TextStyle(fontFamily: 'Geist', fontSize: 19);
+  static const p1 = TextStyle(fontFamily: 'Geist', fontSize: 17);
+  static const p2 = TextStyle(fontFamily: 'Geist', fontSize: 15);
+  static const sub = TextStyle(fontFamily: 'Geist', fontSize: 12);
+}
+
+class ProjectIcons {
+  static const String wemo = 'assets/icons/wemo_logo.svg';
+  static const String burger = 'assets/icons/burger.svg';
+  static const String sell = 'assets/icons/sell.svg';
+  static const String buy = 'assets/icons/buy.svg';
+}
