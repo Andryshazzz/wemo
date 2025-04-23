@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../theme/theme.dart';
+import '../../coins_buy/coins_buy_screen.dart';
 
 class BuySellWidget extends StatelessWidget {
   const BuySellWidget({super.key});
@@ -11,7 +12,15 @@ class BuySellWidget extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: _Button(text: 'Buy', icon: ProjectIcons.buy, onTap: () {}),
+          child: _Button(
+            text: 'Buy',
+            icon: ProjectIcons.buy,
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const CoinsBuyScreen()),
+              );
+            },
+          ),
         ),
         const SizedBox(width: 6),
         Expanded(
