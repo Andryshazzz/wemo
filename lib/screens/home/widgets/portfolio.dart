@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../theme/theme.dart';
+import '../../portfolio/potfolio_screen.dart';
 
 class PortfolioWidget extends StatelessWidget {
   final String price;
@@ -15,7 +16,11 @@ class PortfolioWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius,
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const PortfolioScreen()),
+          );
+        },
         borderRadius: radius,
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: 200),

@@ -72,7 +72,16 @@ class _CoinsBuyListState extends State<_CoinsBuyList>
               height: 360,
               child: TabBarView(
                 controller: _tabController,
-                children: const [CoinsListWidget(), CoinsListWidget()],
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(right: 4),
+                    child: CoinsListWidget(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 4),
+                    child: CoinsListWidget(),
+                  ),
+                ],
               ),
             ),
           ),
