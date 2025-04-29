@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wemo/screens/home/home_screen.dart';
 
+import 'presentation/home/home_screen.dart';
 import 'theme/theme.dart';
 
 void main() {

@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:wemo/screens/home/widgets/buy_sell.dart';
-import 'package:wemo/screens/home/widgets/portfolio.dart';
-
 import '../../theme/theme.dart';
 import 'widgets/burger_button.dart';
+import 'widgets/buy_sell.dart';
 import 'widgets/coins_expansion.dart';
+import 'widgets/portfolio.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -71,9 +70,7 @@ class _CoinsListState extends State<_CoinsList> {
             padding: EdgeInsets.only(top: _basePadding, bottom: _basePadding),
             sliver: SliverToBoxAdapter(child: CoinsExpansionWidget()),
           ),
-          SliverToBoxAdapter(
-            child: CurrenciesExpansionWidget(),
-          ),
+          SliverToBoxAdapter(child: CurrenciesExpansionWidget()),
         ],
       ),
     );
