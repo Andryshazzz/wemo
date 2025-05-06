@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../theme/theme.dart';
+import '../../res/theme.dart';
+import '../../res/theme.dart';
 import 'widgets/coins_list_widget.dart';
 import 'widgets/segmented_control_buttons.dart';
 

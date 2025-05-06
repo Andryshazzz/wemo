@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme.dart';
+import '../../../res/theme.dart';
+import '../../../res/theme.dart';
 
 class CoinsExpansionWidget extends StatelessWidget {
   const CoinsExpansionWidget({super.key});

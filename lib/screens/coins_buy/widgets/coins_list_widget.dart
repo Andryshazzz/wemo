@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme.dart';
+import '../../../res/theme.dart';
 
 class CoinsListWidget extends StatelessWidget {
   const CoinsListWidget({super.key});

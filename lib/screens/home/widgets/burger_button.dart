@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../theme/theme.dart';
+import '../../../res/theme.dart';
 
 class BurgerButton extends StatelessWidget {
   const BurgerButton({super.key});

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme.dart';
+import '../../../res/theme.dart';
 
 class SegmentedControlButtonsWidget extends StatelessWidget {
   final List<Widget> items;

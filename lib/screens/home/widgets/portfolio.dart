@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme/theme.dart';
+import '../../../res/theme.dart';
 import '../../portfolio/potfolio_screen.dart';
 
 class PortfolioWidget extends StatelessWidget {

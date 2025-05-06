@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/home/home_screen.dart';
-import 'theme/theme.dart';
+import 'res/theme.dart';
+import 'screens/home/home_screen.dart';
 
 void main() {
   runApp(const Wemo());

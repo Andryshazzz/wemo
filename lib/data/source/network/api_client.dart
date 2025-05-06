@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../dto/coin_dto.dart';
-
+import '../../models/coin_dto.dart';
 
 class ApiClient {
   ApiClient() {

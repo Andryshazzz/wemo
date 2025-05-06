@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../data/source/network/api_client.dart';
-import '../../../theme/theme.dart';
+import '../../../res/theme.dart';
 import '../../coins_buy/coins_buy_screen.dart';
 
 class BuySellWidget extends StatelessWidget {

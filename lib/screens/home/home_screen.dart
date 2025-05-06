@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../theme/theme.dart';
+import '../../res/theme.dart';
 import 'widgets/burger_button.dart';
 import 'widgets/buy_sell.dart';
 import 'widgets/coins_expansion.dart';

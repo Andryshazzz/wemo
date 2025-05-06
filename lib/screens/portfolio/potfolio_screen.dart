@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../moc.dart';
-import '../../theme/theme.dart';
+import '../../res/theme.dart';
 import '../coins_buy/widgets/coins_list_widget.dart';
 import '../coins_buy/widgets/segmented_control_buttons.dart';
 
