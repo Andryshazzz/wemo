@@ -1,31 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../../../data/models/coin_dto.dart';
 import '../../../res/theme.dart';
-import '../../../res/theme.dart';
-
-class CoinsExpansionWidget extends StatelessWidget {
-  const CoinsExpansionWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionWidget(title: 'Coins', price: '85 317.97');
-  }
-}
-
-class CurrenciesExpansionWidget extends StatelessWidget {
-  const CurrenciesExpansionWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ExpansionWidget(title: 'Currencies', price: '85 317.97');
-  }
-}
 
 class ExpansionWidget extends StatelessWidget {
+  final List<CoinDto> coins;
   final String title;
-  final String price;
 
-  const ExpansionWidget({super.key, required this.title, required this.price});
+  const ExpansionWidget({super.key, required this.title, required this.coins});
 
   @override
   Widget build(BuildContext context) {
@@ -61,41 +43,43 @@ class ExpansionWidget extends StatelessWidget {
               },
             ),
             title: Text(title, style: ProjectTextStyles.p1),
-            children: [
-              const Divider(
-                height: 1,
-                thickness: 0.5,
-                color: ProjectColors.light7,
-              ),
-              _Coin(name: "Bitcoin", price: price),
-              const Divider(
-                height: 1,
-                thickness: 0.5,
-                color: ProjectColors.light7,
-              ),
-              _Coin(name: "Toncoin", price: price),
-              const Divider(
-                height: 1,
-                thickness: 0.5,
-                color: ProjectColors.light7,
-              ),
-              _Coin(name: "Ethereum", price: price),
-            ],
+            children: [..._buildCoinList()],
           ),
         ),
       ),
     );
   }
+
+  List<Widget> _buildCoinList() {
+    final List<Widget> widgets = [];
+
+    for (var i = 0; i < coins.length; i++) {
+      widgets.add(
+        Column(
+          children: [
+            if (i != 0)
+              const Divider(
+                height: 1,
+                thickness: 0.5,
+                color: ProjectColors.light7,
+              ),
+            _Coin(coin: coins[i]),
+          ],
+        ),
+      );
+    }
+    return widgets;
+  }
 }
 
 class _Coin extends StatelessWidget {
-  final String name;
-  final String price;
+  final CoinDto coin;
 
-  const _Coin({super.key, required this.name, required this.price});
+  const _Coin({super.key, required this.coin});
 
   @override
   Widget build(BuildContext context) {
+    final parts = coin.price.toString().split('.');
     return DecoratedBox(
       decoration: BoxDecoration(color: ProjectColors.light4),
       child: Padding(
@@ -106,20 +90,10 @@ class _Coin extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(name, style: ProjectTextStyles.h2),
-                    const SizedBox(width: 6),
-                    Text(
-                      '(BTC)',
-                      style: ProjectTextStyles.p1.copyWith(
-                        color: ProjectColors.light3,
-                      ),
-                    ),
-                  ],
-                ),
+                Text(coin.name, style: ProjectTextStyles.h2),
+                const SizedBox(width: 6),
                 Text(
-                  '1.23123',
+                  coin.price.toString(),
                   style: ProjectTextStyles.sub.copyWith(
                     color: ProjectColors.grey3,
                   ),
@@ -136,12 +110,12 @@ class _Coin extends StatelessWidget {
                         style: ProjectTextStyles.h2,
                         children: [
                           TextSpan(
-                            text: price.split('.')[0],
+                            text: parts[0],
                             style: const TextStyle(color: ProjectColors.black),
                           ),
                           TextSpan(
-                            text: '.${price.split('.')[1]}\$',
-                            style: TextStyle(color: ProjectColors.grey3),
+                            text: '.${parts[1]}',
+                            style: const TextStyle(color: ProjectColors.grey3),
                           ),
                         ],
                       ),

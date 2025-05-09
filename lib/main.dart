@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'dependencies.dart';
 import 'res/theme.dart';
 import 'screens/home/home_screen.dart';
 
 void main() {
+  configureDependencies();
   runApp(const Wemo());
 }
 
@@ -12,6 +14,6 @@ class Wemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(theme: lightTheme, home: HomeScreen());
+    return MaterialApp(theme: lightTheme, home: const HomeScreen());
   }
 }

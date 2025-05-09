@@ -1,6 +1,9 @@
+import 'package:injectable/injectable.dart';
+
 import '../data/models/coin_dto.dart';
 import '../data/source/network/api_client.dart';
 
+@singleton
 class CoinRepository {
   final ApiClient apiClient;
 

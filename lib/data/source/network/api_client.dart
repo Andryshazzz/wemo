@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../models/coin_dto.dart';
 
+@singleton
 class ApiClient {
   ApiClient() {
     _initDio();

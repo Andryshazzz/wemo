@@ -1,7 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get_it/get_it.dart';
+import '../../data/models/coin_dto.dart';
 import '../../res/theme.dart';
+import 'controller/home_bloc.dart';
+import 'controller/home_event.dart';
+import 'controller/home_state.dart';
 import 'widgets/burger_button.dart';
 import 'widgets/buy_sell.dart';
 import 'widgets/coins_expansion.dart';
@@ -12,7 +18,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _HomeScreen();
+    return BlocProvider(
+      create: (context) {
+        return GetIt.I<HomeBloc>()..add(LoadCoin());
+      },
+      child: const _HomeScreen(),
+    );
   }
 }
 
@@ -21,12 +32,28 @@ class _HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: _CoinsList()));
+    return Scaffold(
+      body: SafeArea(
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (state.coins.isEmpty) {
+              return const Text('ой-ой');
+            }
+            return _CoinsList(coins: state.coins);
+          },
+        ),
+      ),
+    );
   }
 }
 
 class _CoinsList extends StatefulWidget {
-  const _CoinsList({super.key});
+  final List<CoinDto> coins;
+
+  const _CoinsList({super.key, required this.coins});
 
   @override
   State<_CoinsList> createState() => _CoinsListState();
@@ -68,9 +95,10 @@ class _CoinsListState extends State<_CoinsList> {
           ),
           SliverPadding(
             padding: EdgeInsets.only(top: _basePadding, bottom: _basePadding),
-            sliver: SliverToBoxAdapter(child: CoinsExpansionWidget()),
+            sliver: SliverToBoxAdapter(
+              child: ExpansionWidget(title: 'Coins', coins: widget.coins),
+            ),
           ),
-          SliverToBoxAdapter(child: CurrenciesExpansionWidget()),
         ],
       ),
     );

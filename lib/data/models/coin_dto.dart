@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 @JsonSerializable()
 class CoinDto {
   final String name;
-  final int price;
+  final double price;
 
   CoinDto({required this.name, required this.price});
 }
