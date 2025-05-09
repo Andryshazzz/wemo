@@ -9,7 +9,7 @@ class CoinRepository {
 
   CoinRepository({required this.apiClient});
 
-  Future<List<CoinDto>> getCoin() async {
-    return apiClient.getCoin();
+  Future<List<CoinDto>> getCoin(List<String> cryptoSymbols) async {
+    return apiClient.getCoin(cryptoSymbols);
   }
 }

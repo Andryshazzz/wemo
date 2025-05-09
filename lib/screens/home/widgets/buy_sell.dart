@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../data/source/network/api_client.dart';
+import '../../../dependencies.dart';
 import '../../../res/theme.dart';
-import '../../coins_buy/coins_buy_screen.dart';
+import '../../trade/coins_buy_screen.dart';
+
+enum TradeType { buy, sell }
 
 class BuySellWidget extends StatelessWidget {
   const BuySellWidget({super.key});
@@ -17,8 +19,9 @@ class BuySellWidget extends StatelessWidget {
             text: 'Buy',
             icon: ProjectIcons.buy,
             onTap: () {
+              getIt.registerSingleton<TradeType>(TradeType.buy);
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const CoinsBuyScreen()),
+                MaterialPageRoute(builder: (context) => const TradeScreen()),
               );
             },
           ),
@@ -29,6 +32,10 @@ class BuySellWidget extends StatelessWidget {
             text: 'Sell',
             icon: ProjectIcons.sell,
             onTap: () {
+              getIt.registerSingleton<TradeType>(TradeType.sell);
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const TradeScreen()),
+              );
             },
           ),
         ),

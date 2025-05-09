@@ -114,7 +114,9 @@ class _Coin extends StatelessWidget {
                             style: const TextStyle(color: ProjectColors.black),
                           ),
                           TextSpan(
-                            text: '.${parts[1]}',
+                            text:
+                                '.${parts[1]}'
+                                r'$',
                             style: const TextStyle(color: ProjectColors.grey3),
                           ),
                         ],

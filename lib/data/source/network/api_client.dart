@@ -21,10 +21,10 @@ class ApiClient {
       ..sendTimeout = const Duration(seconds: 30);
   }
 
-  Future<List<CoinDto>> getCoin() async {
+  Future<List<CoinDto>> getCoin(List<String> cryptoSymbols) async {
     try {
       final request = await _dio.get(
-        '/data/pricemulti?fsyms=BTC,ETH,TON&tsyms=USD',
+        '/data/pricemulti?fsyms=${cryptoSymbols.join(',')}&tsyms=USD',
       );
 
       final data = request.data as Map<String, dynamic>;
