@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../res/theme.dart';
 import '../../portfolio/potfolio_screen.dart';
+import '../controller/home_bloc.dart';
+import '../controller/home_state.dart';
 
 class PortfolioWidget extends StatelessWidget {
-  final String price;
-
-  const PortfolioWidget({super.key, required this.price});
+  const PortfolioWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final _price = price;
     const radius = BorderRadius.all(Radius.circular(12));
     return ClipRRect(
       borderRadius: radius,
@@ -33,20 +33,28 @@ class PortfolioWidget extends StatelessWidget {
                 children: [
                   const Text('balance', style: ProjectTextStyles.p1),
                   const Spacer(),
-                  Text.rich(
-                    TextSpan(
-                      style: ProjectTextStyles.h1,
-                      children: [
+                  BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      final balanceStr = state.balance.toStringAsFixed(2);
+                      final parts = balanceStr.split('.');
+                      return Text.rich(
                         TextSpan(
-                          text: _price.split('.')[0],
-                          style: const TextStyle(color: ProjectColors.black),
+                          style: ProjectTextStyles.h1,
+                          children: [
+                            TextSpan(
+                              text: parts[0],
+                              style: const TextStyle(
+                                color: ProjectColors.black,
+                              ),
+                            ),
+                            TextSpan(
+                              text: '.${parts[1]}\$',
+                              style: TextStyle(color: ProjectColors.grey3),
+                            ),
+                          ],
                         ),
-                        TextSpan(
-                          text: '.${_price.split('.')[1]}\$',
-                          style: TextStyle(color: ProjectColors.grey3),
-                        ),
-                      ],
-                    ),
+                      );
+                    },
                   ),
                 ],
               ),

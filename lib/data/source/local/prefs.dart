@@ -6,6 +6,7 @@ import '../../models/coin_dto.dart';
 @singleton
 class Prefs {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  static const String _balanceKey = 'user_balance';
 
   Future<void> updateCache(List<CoinDto> coins) async {
     final prefs = await _prefs;
@@ -22,5 +23,15 @@ class Prefs {
   Future<void> clearCache() async {
     final prefs = await _prefs;
     await prefs.clear();
+  }
+
+  Future<void> setBalance(double balance) async {
+    final prefs = await _prefs;
+    await prefs.setDouble(_balanceKey, balance);
+  }
+
+  Future<double> getBalance() async {
+    final prefs = await _prefs;
+    return prefs.getDouble(_balanceKey) ?? 22312.32;
   }
 }

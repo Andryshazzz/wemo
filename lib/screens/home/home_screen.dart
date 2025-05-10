@@ -101,7 +101,7 @@ class _CoinsListState extends State<_CoinsList> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(child: PortfolioWidget(price: "22 312.32")),
+            SliverToBoxAdapter(child: PortfolioWidget()),
             SliverPadding(
               padding: EdgeInsets.only(top: _basePadding / 2),
               sliver: SliverToBoxAdapter(child: BuySellWidget()),

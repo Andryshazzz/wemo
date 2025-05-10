@@ -22,4 +22,12 @@ class CoinRepository {
   Future<void> updateCache(List<CoinDto> coins) async {
     return prefs.updateCache(coins);
   }
+
+  Future<void> setBalance(double balance) async {
+    return prefs.setBalance(balance);
+  }
+
+  Future<double> getBalance() async {
+    return prefs.getBalance();
+  }
 }
