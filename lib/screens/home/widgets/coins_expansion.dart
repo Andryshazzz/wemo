@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/models/coin_dto.dart';
 import '../../../res/theme.dart';
+import '../controller/home_bloc.dart';
+import '../controller/home_state.dart';
 
 class ExpansionWidget extends StatelessWidget {
   final List<CoinDto> coins;
@@ -80,61 +83,78 @@ class _Coin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final parts = coin.price.toString().split('.');
-    return DecoratedBox(
-      decoration: BoxDecoration(color: ProjectColors.light4),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        final previousPrice = state.previousPrices[coin.name];
+        final priceChange =
+            previousPrice != null ? coin.price - previousPrice : 0.0;
+        final percentageChange =
+            previousPrice != null && previousPrice != 0
+                ? (priceChange / previousPrice) * 100
+                : 0.0;
+        final isPriceUp = priceChange > 0 || previousPrice == null;
+        return DecoratedBox(
+          decoration: BoxDecoration(color: ProjectColors.light4),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(coin.name, style: ProjectTextStyles.h2),
-                const SizedBox(width: 6),
-                Text(
-                  coin.price.toString(),
-                  style: ProjectTextStyles.sub.copyWith(
-                    color: ProjectColors.grey3,
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text.rich(
-                      TextSpan(
-                        style: ProjectTextStyles.h2,
-                        children: [
-                          TextSpan(
-                            text: parts[0],
-                            style: const TextStyle(color: ProjectColors.black),
-                          ),
-                          TextSpan(
-                            text:
-                                '.${parts[1]}'
-                                r'$',
-                            style: const TextStyle(color: ProjectColors.grey3),
-                          ),
-                        ],
+                    Text(coin.name, style: ProjectTextStyles.h2),
+                    const SizedBox(width: 6),
+                    Text(
+                      '123.322213',
+                      style: ProjectTextStyles.sub.copyWith(
+                        color: ProjectColors.grey3,
                       ),
                     ),
                   ],
                 ),
-                Text(
-                  '329.32 (1,03%)',
-                  style: ProjectTextStyles.sub.copyWith(
-                    color: ProjectColors.green,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            style: ProjectTextStyles.h2,
+                            children: [
+                              TextSpan(
+                                text: parts[0],
+                                style: const TextStyle(
+                                  color: ProjectColors.black,
+                                ),
+                              ),
+                              TextSpan(
+                                text:
+                                    '.${parts[1]}'
+                                    r'$',
+                                style: const TextStyle(
+                                  color: ProjectColors.grey3,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '${priceChange.toStringAsFixed(2)} (${percentageChange.toStringAsFixed(2)}%)',
+                      style: ProjectTextStyles.sub.copyWith(
+                        color:
+                            isPriceUp ? ProjectColors.green : ProjectColors.red,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

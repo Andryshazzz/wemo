@@ -5,6 +5,7 @@ import 'res/theme.dart';
 import 'screens/home/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   runApp(const Wemo());
 }

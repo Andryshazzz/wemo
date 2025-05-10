@@ -73,33 +73,47 @@ class _CoinsListState extends State<_CoinsList> {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _basePadding),
-      child: CustomScrollView(
-        controller: _controller,
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.all(_basePadding),
-            sliver: SliverToBoxAdapter(
-              child: Row(
-                children: [
-                  SvgPicture.asset(ProjectIcons.wemo),
-                  Spacer(),
-                  BurgerButton(),
-                ],
+      child: RefreshIndicator(
+        onRefresh: () async {
+          context.read<HomeBloc>().add(LoadCoin());
+          await context.read<HomeBloc>().stream.firstWhere(
+            (state) => !state.isLoading,
+          );
+        },
+        elevation: 0,
+        color: ProjectColors.black,
+        backgroundColor: Colors.transparent,
+        displacement: 10,
+        strokeWidth: 2,
+        child: CustomScrollView(
+          controller: _controller,
+          physics: const AlwaysScrollableScrollPhysics(),
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.all(_basePadding),
+              sliver: SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    SvgPicture.asset(ProjectIcons.wemo),
+                    Spacer(),
+                    BurgerButton(),
+                  ],
+                ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(child: PortfolioWidget(price: "22 312.32")),
-          SliverPadding(
-            padding: EdgeInsets.only(top: _basePadding / 2),
-            sliver: SliverToBoxAdapter(child: BuySellWidget()),
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(top: _basePadding, bottom: _basePadding),
-            sliver: SliverToBoxAdapter(
-              child: ExpansionWidget(title: 'Coins', coins: widget.coins),
+            SliverToBoxAdapter(child: PortfolioWidget(price: "22 312.32")),
+            SliverPadding(
+              padding: EdgeInsets.only(top: _basePadding / 2),
+              sliver: SliverToBoxAdapter(child: BuySellWidget()),
             ),
-          ),
-        ],
+            SliverPadding(
+              padding: EdgeInsets.only(top: _basePadding, bottom: _basePadding),
+              sliver: SliverToBoxAdapter(
+                child: ExpansionWidget(title: 'Coins', coins: widget.coins),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

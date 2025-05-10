@@ -16,6 +16,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onLoadCoins(LoadCoin event, Emitter<HomeState> emit) async {
     final coins = await repository.getCoin(['BTC', 'ETH', 'TON']);
-    emit(state.copyWith(isLoading: false, coins: coins));
+
+    final previousPrices = <String, double?>{};
+    for (var coin in coins) {
+      previousPrices[coin.name] = await (await repository.getPreviousPrice(
+        coin.name,
+      ));
+    }
+    await repository.updateCache(coins);
+
+    emit(
+      state.copyWith(
+        isLoading: false,
+        coins: coins,
+        previousPrices: previousPrices,
+      ),
+    );
   }
 }
