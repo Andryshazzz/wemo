@@ -6,6 +6,8 @@ import '../controller/home_bloc.dart';
 import '../controller/home_state.dart';
 import '../trade_screen/widgets/coins_list_widget.dart';
 import '../trade_screen/widgets/segmented_control_buttons.dart';
+import 'widgets/button.dart';
+import 'widgets/market_route.dart';
 
 class PortfolioScreen extends StatelessWidget {
   const PortfolioScreen({super.key});
@@ -83,7 +85,7 @@ class _PortfolioListState extends State<_PortfolioList>
                         padding: EdgeInsets.only(right: 4),
                         child:
                             portfolio.isEmpty
-                                ? Placeholder()
+                                ? MarketRoute()
                                 : CoinsListWidget(),
                       ),
                       Padding(
