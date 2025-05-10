@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../res/theme.dart';
+import '../../../res/theme.dart';
 
 class BurgerButton extends StatelessWidget {
-  const BurgerButton({super.key});
+  final Function() onTap;
+
+  const BurgerButton({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +14,12 @@ class BurgerButton extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius,
       child: InkWell(
-        onTap: () {},
+        onTap: onTap,
         borderRadius: radius,
         child: ConstrainedBox(
           constraints: BoxConstraints(maxHeight: 30, maxWidth: 42),
           child: DecoratedBox(
-            decoration: BoxDecoration(color: Color(0xffFEFEFE)),
+            decoration: BoxDecoration(color: ProjectColors.light5),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 11),
               child: SvgPicture.asset(ProjectIcons.burger),

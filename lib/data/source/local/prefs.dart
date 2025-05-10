@@ -1,7 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../models/coin_dto.dart';
+import '../../models/coin.dart';
+
 
 @singleton
 class Prefs {
@@ -9,9 +10,9 @@ class Prefs {
   static const String _balanceKey = 'user_balance';
   static const String _portfolioKey = 'user_portfolio';
 
-  Future<void> updateCache(List<CoinDto> coins) async {
+  Future<void> updateCache(List<Coin> coins) async {
     final prefs = await _prefs;
-    for (var coin in coins) {
+    for (final coin in coins) {
       await prefs.setDouble('coin_price_${coin.name}', coin.price);
     }
   }

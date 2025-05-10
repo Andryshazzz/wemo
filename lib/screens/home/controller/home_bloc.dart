@@ -2,15 +2,14 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 
-import '../../../repos/coin_repo.dart';
+import '../../../repos/home_repo.dart';
 import 'home_event.dart';
 import 'home_state.dart';
 
 @injectable
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final CoinRepository repository;
+  final HomeRepository repository;
 
   HomeBloc({required this.repository}) : super(HomeState()) {
     on<LoadCoin>(_onLoadCoins);
@@ -25,7 +24,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final portfolio = await repository.getPortfolio();
 
     final previousPrices = <String, double?>{};
-    for (var coin in coins) {
+    for (final coin in coins) {
       previousPrices[coin.name] = await (await repository.getPreviousPrice(
         coin.name,
       ));

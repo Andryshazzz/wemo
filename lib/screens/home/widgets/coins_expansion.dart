@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../data/models/coin_dto.dart';
-import '../../../../res/theme.dart';
-import '../../controller/home_bloc.dart';
-import '../../controller/home_state.dart';
+import '../../../data/models/coin.dart';
+import '../../../res/theme.dart';
+import '../controller/home_bloc.dart';
+import '../controller/home_state.dart';
 
 class ExpansionWidget extends StatelessWidget {
-  final List<CoinDto> coins;
+  final List<Coin> coins;
   final String title;
 
   const ExpansionWidget({super.key, required this.title, required this.coins});
@@ -54,7 +53,7 @@ class ExpansionWidget extends StatelessWidget {
   }
 
   List<Widget> _buildCoinList() {
-    final List<Widget> widgets = [];
+    final widgets = <Widget>[];
 
     for (var i = 0; i < coins.length; i++) {
       widgets.add(
@@ -76,7 +75,7 @@ class ExpansionWidget extends StatelessWidget {
 }
 
 class _Coin extends StatelessWidget {
-  final CoinDto coin;
+  final Coin coin;
 
   const _Coin({super.key, required this.coin});
 

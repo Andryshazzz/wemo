@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../../res/dependencies.dart';
-import '../../../../res/theme.dart';
-import '../../trade_screen/coins_buy_screen.dart';
+import '../../../res/dependencies.dart';
+import '../../../res/theme.dart';
+import '../trade_screen/coins_buy_screen.dart';
 
 enum TradeType { buy, sell }
 
-class BuySellWidget extends StatelessWidget {
-  const BuySellWidget({super.key});
+class TradeWidget extends StatelessWidget {
+  const TradeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

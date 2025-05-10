@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../res/dependencies.dart';
 import '../../../res/theme.dart';
-import '../home_screen/widgets/buy_sell.dart';
+import '../widgets/trade.dart';
 import 'widgets/coins_list_widget.dart';
 import 'widgets/segmented_control_buttons.dart';
 

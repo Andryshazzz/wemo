@@ -1,8 +1,8 @@
-import '../../../data/models/coin_dto.dart';
+import '../../../data/models/coin.dart';
 
 class HomeState {
   final bool isLoading;
-  final List<CoinDto> coins;
+  final List<Coin> coins;
   final Map<String, double?> previousPrices;
   final double balance;
   final Map<String, double> portfolio;
@@ -17,7 +17,7 @@ class HomeState {
 
   HomeState copyWith({
     bool? isLoading,
-    List<CoinDto>? coins,
+    List<Coin>? coins,
     Map<String, double?>? previousPrices,
     double? balance,
     Map<String, double>? portfolio,

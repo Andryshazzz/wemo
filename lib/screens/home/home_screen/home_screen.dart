@@ -2,16 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get_it/get_it.dart';
-import '../../../data/models/coin_dto.dart';
+import '../../../data/models/coin.dart';
 import '../../../res/theme.dart';
 import '../controller/home_bloc.dart';
 import '../controller/home_event.dart';
 import '../controller/home_state.dart';
-import 'widgets/burger_button.dart';
-import 'widgets/buy_sell.dart';
-import 'widgets/coins_expansion.dart';
-import 'widgets/portfolio.dart';
+import '../widgets/burger_button.dart';
+import '../widgets/coins_expansion.dart';
+import '../widgets/portfolio.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,7 +44,7 @@ class _HomeScreen extends StatelessWidget {
 }
 
 class _CoinsList extends StatefulWidget {
-  final List<CoinDto> coins;
+  final List<Coin> coins;
 
   const _CoinsList({super.key, required this.coins});
 
@@ -91,7 +89,7 @@ class _CoinsListState extends State<_CoinsList> {
                   children: [
                     SvgPicture.asset(ProjectIcons.wemo),
                     Spacer(),
-                    BurgerButton(),
+                    BurgerButton(onTap: () {}),
                   ],
                 ),
               ),
@@ -99,7 +97,7 @@ class _CoinsListState extends State<_CoinsList> {
             SliverToBoxAdapter(child: PortfolioWidget()),
             SliverPadding(
               padding: EdgeInsets.only(top: _basePadding / 2),
-              sliver: SliverToBoxAdapter(child: BuySellWidget()),
+              sliver: SliverToBoxAdapter(child: TradeWidget()),
             ),
             SliverPadding(
               padding: EdgeInsets.only(top: _basePadding, bottom: _basePadding),

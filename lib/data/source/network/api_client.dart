@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../models/coin_dto.dart';
+import '../../models/coin.dart';
 
 @singleton
 class ApiClient {
@@ -21,7 +21,7 @@ class ApiClient {
       ..sendTimeout = const Duration(seconds: 30);
   }
 
-  Future<List<CoinDto>> getCoin(List<String> cryptoSymbols) async {
+  Future<List<Coin>> getCoin(List<String> cryptoSymbols) async {
     try {
       final request = await _dio.get(
         '/data/pricemulti?fsyms=${cryptoSymbols.join(',')}&tsyms=USD',
@@ -31,7 +31,7 @@ class ApiClient {
       final coinsList =
           data.entries
               .map(
-                (e) => CoinDto(
+                (e) => Coin(
                   name: e.key,
                   price: (e.value as Map<String, dynamic>)['USD'],
                 ),

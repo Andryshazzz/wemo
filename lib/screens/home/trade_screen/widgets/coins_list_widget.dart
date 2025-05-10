@@ -8,7 +8,7 @@ class CoinsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, String>> cryptocurrencies = [
+    final cryptocurrencies = <Map<String, String>>[
 
       {'name': 'Ethereum', 'price': '2,350.75'},
       {'name': 'Cardano', 'price': '1.25'},
