@@ -22,6 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final coins = await repository.getCoin(['BTC', 'ETH', 'TON']);
 
     final balance = await repository.getBalance();
+    final portfolio = await repository.getPortfolio();
 
     final previousPrices = <String, double?>{};
     for (var coin in coins) {
@@ -37,6 +38,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         coins: coins,
         previousPrices: previousPrices,
         balance: balance,
+        portfolio: portfolio,
       ),
     );
   }
@@ -46,15 +48,37 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final newBalance = state.balance - cost;
     if (newBalance < 0) {
       log('balance < 0');
+      return;
     }
+
+    final newPortfolio = Map<String, double>.from(state.portfolio);
+    newPortfolio[event.coinName] =
+        (newPortfolio[event.coinName] ?? 0) + event.amount;
+
     await repository.setBalance(newBalance);
-    emit(state.copyWith(balance: newBalance));
+    await repository.setPortfolio(newPortfolio);
+
+    emit(state.copyWith(balance: newBalance, portfolio: newPortfolio));
   }
 
   Future<void> _onSellCoin(SellCoin event, Emitter<HomeState> emit) async {
+    final currentAmount = state.portfolio[event.coinName] ?? 0;
+    if (currentAmount < event.amount) {
+      log('currentAmount < 0');
+      return;
+    }
+
     final revenue = event.amount * event.price;
     final newBalance = state.balance + revenue;
+    final newPortfolio = Map<String, double>.from(state.portfolio);
+    newPortfolio[event.coinName] = currentAmount - event.amount;
+    if (newPortfolio[event.coinName] == 0) {
+      newPortfolio.remove(event.coinName);
+    }
+
     await repository.setBalance(newBalance);
-    emit(state.copyWith(balance: newBalance));
+    await repository.setPortfolio(newPortfolio);
+
+    emit(state.copyWith(balance: newBalance, portfolio: newPortfolio));
   }
 }

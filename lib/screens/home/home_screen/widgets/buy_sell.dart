@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../dependencies.dart';
-import '../../../res/theme.dart';
-import '../../trade/coins_buy_screen.dart';
+import '../../../../res/dependencies.dart';
+import '../../../../res/theme.dart';
+import '../../trade_screen/coins_buy_screen.dart';
 
 enum TradeType { buy, sell }
 

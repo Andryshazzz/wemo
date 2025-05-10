@@ -30,4 +30,12 @@ class CoinRepository {
   Future<double> getBalance() async {
     return prefs.getBalance();
   }
+
+  Future<void> setPortfolio(Map<String, double> portfolio) async {
+    return prefs.setPortfolio(portfolio);
+  }
+
+  Future<Map<String, double>> getPortfolio() async {
+    return prefs.getPortfolio();
+  }
 }

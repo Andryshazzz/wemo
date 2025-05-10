@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
-import '../../data/models/coin_dto.dart';
-import '../../res/theme.dart';
-import 'controller/home_bloc.dart';
-import 'controller/home_event.dart';
-import 'controller/home_state.dart';
+import '../../../data/models/coin_dto.dart';
+import '../../../res/theme.dart';
+import '../controller/home_bloc.dart';
+import '../controller/home_event.dart';
+import '../controller/home_state.dart';
 import 'widgets/burger_button.dart';
 import 'widgets/buy_sell.dart';
 import 'widgets/coins_expansion.dart';
@@ -18,12 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) {
-        return GetIt.I<HomeBloc>()..add(LoadCoin());
-      },
-      child: const _HomeScreen(),
-    );
+    return const _HomeScreen();
   }
 }
 

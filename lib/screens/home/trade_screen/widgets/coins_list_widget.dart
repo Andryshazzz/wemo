@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../res/theme.dart';
+import '../../../../res/theme.dart';
 
 class CoinsListWidget extends StatelessWidget {
   const CoinsListWidget({super.key});
@@ -9,7 +9,7 @@ class CoinsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Map<String, String>> cryptocurrencies = [
-      {'name': 'Bitcoin', 'price': '42,350.20'},
+
       {'name': 'Ethereum', 'price': '2,350.75'},
       {'name': 'Cardano', 'price': '1.25'},
       {'name': 'Solana', 'price': '125.60'},
