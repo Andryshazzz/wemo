@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../res/dependencies.dart';
 import '../../../res/theme.dart';
-import '../trade_screen/coins_buy_screen.dart';
+import '../trade_screen/trade_screen.dart';
 
 enum TradeType { buy, sell }
 

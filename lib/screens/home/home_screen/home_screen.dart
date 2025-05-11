@@ -1,27 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import '../../../data/models/coin.dart';
 import '../../../res/theme.dart';
 import '../controller/home_bloc.dart';
 import '../controller/home_event.dart';
 import '../controller/home_state.dart';
-import '../widgets/burger_button.dart';
 import '../widgets/coins_expansion.dart';
 import '../widgets/portfolio.dart';
+import '../widgets/trade.dart';
+import 'widgets/header_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const _HomeScreen();
-  }
-}
-
-class _HomeScreen extends StatelessWidget {
-  const _HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +36,9 @@ class _HomeScreen extends StatelessWidget {
 
 class _CoinsList extends StatefulWidget {
   final List<Coin> coins;
+  final double? previousPrice;
 
-  const _CoinsList({super.key, required this.coins});
+  const _CoinsList({super.key, required this.coins, this.previousPrice});
 
   @override
   State<_CoinsList> createState() => _CoinsListState();
@@ -84,15 +76,7 @@ class _CoinsListState extends State<_CoinsList> {
           slivers: [
             SliverPadding(
               padding: EdgeInsets.all(_basePadding),
-              sliver: SliverToBoxAdapter(
-                child: Row(
-                  children: [
-                    SvgPicture.asset(ProjectIcons.wemo),
-                    Spacer(),
-                    BurgerButton(onTap: () {}),
-                  ],
-                ),
-              ),
+              sliver: SliverToBoxAdapter(child: HeaderWidget()),
             ),
             SliverToBoxAdapter(child: PortfolioWidget()),
             SliverPadding(

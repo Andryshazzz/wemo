@@ -2,21 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../res/dependencies.dart';
 import '../../../res/theme.dart';
+import '../widgets/coins_list_widget.dart';
+import '../widgets/segmented_control_buttons.dart';
 import '../widgets/trade.dart';
-import 'widgets/coins_list_widget.dart';
-import 'widgets/segmented_control_buttons.dart';
 
 class TradeScreen extends StatelessWidget {
   const TradeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return _TradeScreen();
-  }
-}
-
-class _TradeScreen extends StatelessWidget {
-  const _TradeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

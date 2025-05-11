@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../res/dependencies.dart';
-import '../../../../res/theme.dart';
-import '../../widgets/trade.dart';
-import '../../trade_screen/coins_buy_screen.dart';
+import '../../../res/dependencies.dart';
+import '../../../res/theme.dart';
+import '../trade_screen/trade_screen.dart';
+import 'trade.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String title;

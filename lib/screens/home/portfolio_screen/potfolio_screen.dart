@@ -4,21 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../res/theme.dart';
 import '../controller/home_bloc.dart';
 import '../controller/home_state.dart';
-import '../trade_screen/widgets/coins_list_widget.dart';
-import '../trade_screen/widgets/segmented_control_buttons.dart';
-import 'widgets/market_route.dart';
+import '../widgets/coins_list_widget.dart';
+import '../widgets/segmented_control_buttons.dart';
+import '../widgets/market_route.dart';
 
 class PortfolioScreen extends StatelessWidget {
   const PortfolioScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const _PortfolioScreen();
-  }
-}
-
-class _PortfolioScreen extends StatelessWidget {
-  const _PortfolioScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

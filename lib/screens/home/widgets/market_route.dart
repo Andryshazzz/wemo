@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../res/theme.dart';
+import '../../../res/theme.dart';
 import 'button.dart';
 
 class MarketRoute extends StatelessWidget {
