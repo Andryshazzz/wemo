@@ -113,7 +113,7 @@ class _Coin extends StatelessWidget {
                   ],
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Row(
                       children: [

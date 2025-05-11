@@ -6,11 +6,13 @@ class CryptoRow extends StatelessWidget {
   final String name;
   final String price;
   final String previousPrices;
+  final Color? color;
 
   const CryptoRow({
     required this.name,
     required this.price,
     required this.previousPrices,
+    this.color,
   });
 
   @override
@@ -45,9 +47,7 @@ class CryptoRow extends StatelessWidget {
               ),
               Text(
                 previousPrices,
-                style: ProjectTextStyles.sub.copyWith(
-                  color: ProjectColors.green,
-                ),
+                style: ProjectTextStyles.sub.copyWith(color: color),
               ),
             ],
           ),

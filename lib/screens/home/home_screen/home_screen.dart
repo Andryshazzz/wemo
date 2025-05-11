@@ -36,9 +36,8 @@ class HomeScreen extends StatelessWidget {
 
 class _CoinsList extends StatefulWidget {
   final List<Coin> coins;
-  final double? previousPrice;
 
-  const _CoinsList({super.key, required this.coins, this.previousPrice});
+  const _CoinsList({super.key, required this.coins});
 
   @override
   State<_CoinsList> createState() => _CoinsListState();

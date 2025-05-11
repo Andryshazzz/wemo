@@ -47,56 +47,72 @@ class _BuyListState extends State<_BuyList>
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _basePadding),
-      child: CustomScrollView(
-        controller: _controller,
-        slivers: [
-          SliverAppBar(
-            pinned: true,
-            surfaceTintColor: Colors.transparent,
-            title: Text(
-              'Buy',
-              style: ProjectTextStyles.h2.copyWith(fontWeight: FontWeight.w600),
+      child: RefreshIndicator(
+        onRefresh: () async {
+          context.read<HomeBloc>().add(LoadCoin());
+          await context.read<HomeBloc>().stream.firstWhere(
+            (state) => !state.isLoading,
+          );
+        },
+        elevation: 0,
+        color: ProjectColors.black,
+        backgroundColor: Colors.transparent,
+        displacement: 10,
+        strokeWidth: 2,
+        child: CustomScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          controller: _controller,
+          slivers: [
+            SliverAppBar(
+              pinned: true,
+              surfaceTintColor: Colors.transparent,
+              title: Text(
+                'Buy',
+                style: ProjectTextStyles.h2.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              backgroundColor: ProjectColors.light1,
             ),
-            backgroundColor: ProjectColors.light1,
-          ),
-          SliverPadding(
-            padding: EdgeInsets.only(bottom: _basePadding),
-            sliver: SliverToBoxAdapter(
-              child: SegmentedControlButtonsWidget(
-                items: const [Text('Coins'), Text('Currencies')],
-                controller: _tabController,
+            SliverPadding(
+              padding: EdgeInsets.only(bottom: _basePadding),
+              sliver: SliverToBoxAdapter(
+                child: SegmentedControlButtonsWidget(
+                  items: const [Text('Coins'), Text('Currencies')],
+                  controller: _tabController,
+                ),
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 650,
-              child: BlocBuilder<HomeBloc, HomeState>(
-                builder: (context, state) {
-                  if (state.isLoading) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  if (state.coins.isEmpty) {
-                    return const Text('ой-ой');
-                  }
-                  return TabBarView(
-                    controller: _tabController,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: 4),
-                        child: CoinsListWidget(coins: state.coins),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 4),
-                        child: Center(child: Text('Comming Soon...')),
-                      ),
-                    ],
-                  );
-                },
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 650,
+                child: BlocBuilder<HomeBloc, HomeState>(
+                  builder: (context, state) {
+                    if (state.isLoading) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                    if (state.coins.isEmpty) {
+                      return const Text('ой-ой');
+                    }
+                    return TabBarView(
+                      controller: _tabController,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: 4),
+                          child: CoinsListWidget(coins: state.coins),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 4),
+                          child: Center(child: Text('Comming Soon...')),
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
