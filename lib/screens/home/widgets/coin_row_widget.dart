@@ -1,46 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../../res/theme.dart';
 
-class CoinsListWidget extends StatelessWidget {
-  const CoinsListWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final cryptocurrencies = <Map<String, String>>[
-
-      {'name': 'Ethereum', 'price': '2,350.75'},
-      {'name': 'Cardano', 'price': '1.25'},
-      {'name': 'Solana', 'price': '125.60'},
-      {'name': 'Polkadot', 'price': '25.30'},
-    ];
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(16)),
-        color: ProjectColors.light4,
-      ),
-      child: ListView.separated(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: cryptocurrencies.length,
-        itemBuilder:
-            (context, index) => _CryptoRow(
-              name: cryptocurrencies[index]['name']!,
-              price: cryptocurrencies[index]['price']!,
-            ),
-        separatorBuilder:
-            (context, index) => const Divider(height: 1, thickness: 1),
-      ),
-    );
-  }
-}
-
-class _CryptoRow extends StatelessWidget {
+class CryptoRow extends StatelessWidget {
   final String name;
   final String price;
+  final String previousPrices;
 
-  const _CryptoRow({required this.name, required this.price});
+  const CryptoRow({
+    required this.name,
+    required this.price,
+    required this.previousPrices,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +44,7 @@ class _CryptoRow extends StatelessWidget {
                 ],
               ),
               Text(
-                '329.32 (1,03%)',
+                previousPrices,
                 style: ProjectTextStyles.sub.copyWith(
                   color: ProjectColors.green,
                 ),

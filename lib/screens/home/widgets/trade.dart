@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../res/dependencies.dart';
 import '../../../res/theme.dart';
-import '../trade_screen/trade_screen.dart';
-
-enum TradeType { buy, sell }
+import '../buy_screen/buy_screen.dart';
+import '../controller/home_bloc.dart';
+import '../sell_screen/sell_screen.dart';
 
 class TradeWidget extends StatelessWidget {
   const TradeWidget({super.key});
@@ -19,9 +19,14 @@ class TradeWidget extends StatelessWidget {
             text: 'Buy',
             icon: ProjectIcons.buy,
             onTap: () {
-              getIt.registerSingleton<TradeType>(TradeType.buy);
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const TradeScreen()),
+                MaterialPageRoute(
+                  builder:
+                      (context) => BlocProvider.value(
+                        value: context.read<HomeBloc>(),
+                        child: const BuyScreen(),
+                      ),
+                ),
               );
             },
           ),
@@ -32,9 +37,8 @@ class TradeWidget extends StatelessWidget {
             text: 'Sell',
             icon: ProjectIcons.sell,
             onTap: () {
-              getIt.registerSingleton<TradeType>(TradeType.sell);
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const TradeScreen()),
+                MaterialPageRoute(builder: (context) => const SellScreen()),
               );
             },
           ),

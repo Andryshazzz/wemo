@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
 
-import '../../../res/dependencies.dart';
 import '../../../res/theme.dart';
-import '../widgets/coins_list_widget.dart';
 import '../widgets/segmented_control_buttons.dart';
-import '../widgets/trade.dart';
 
-class TradeScreen extends StatelessWidget {
-  const TradeScreen({super.key});
+class SellScreen extends StatelessWidget {
+  const SellScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: SafeArea(child: _CoinsList()));
+    return Scaffold(body: SafeArea(child: _SellList()));
   }
 }
 
-class _CoinsList extends StatefulWidget {
-  const _CoinsList({super.key});
+class _SellList extends StatefulWidget {
+  const _SellList({super.key});
 
   @override
-  State<_CoinsList> createState() => _CoinsListState();
+  State<_SellList> createState() => _SellListState();
 }
 
-class _CoinsListState extends State<_CoinsList>
+class _SellListState extends State<_SellList>
     with SingleTickerProviderStateMixin {
   late final _tabController = TabController(length: 2, vsync: this);
-  late final TradeType tradeType = getIt<TradeType>();
   final ScrollController _controller = ScrollController();
   final double _basePadding = 12;
 
@@ -33,9 +29,6 @@ class _CoinsListState extends State<_CoinsList>
   void dispose() {
     _tabController.dispose();
     _controller.dispose();
-    if (getIt.isRegistered<TradeType>()) {
-      getIt.unregister<TradeType>();
-    }
     super.dispose();
   }
 
@@ -50,7 +43,7 @@ class _CoinsListState extends State<_CoinsList>
             pinned: true,
             surfaceTintColor: Colors.transparent,
             title: Text(
-              tradeType == TradeType.buy ? 'Buy' : 'Sell',
+              'Sell',
               style: ProjectTextStyles.h2.copyWith(fontWeight: FontWeight.w600),
             ),
             backgroundColor: ProjectColors.light1,
@@ -72,11 +65,11 @@ class _CoinsListState extends State<_CoinsList>
                 children: const [
                   Padding(
                     padding: EdgeInsets.only(right: 4),
-                    child: CoinsListWidget(),
+                    child: Placeholder(),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 4),
-                    child: CoinsListWidget(),
+                    child: Placeholder(),
                   ),
                 ],
               ),

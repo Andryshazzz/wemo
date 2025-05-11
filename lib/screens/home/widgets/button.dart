@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../res/dependencies.dart';
 import '../../../res/theme.dart';
-import '../trade_screen/trade_screen.dart';
-import 'trade.dart';
+import '../buy_screen/buy_screen.dart';
 
 class ButtonWidget extends StatelessWidget {
   final String title;
@@ -18,10 +15,9 @@ class ButtonWidget extends StatelessWidget {
       borderRadius: radius,
       child: InkWell(
         onTap: () {
-          getIt.registerSingleton<TradeType>(TradeType.buy);
           Navigator.of(
             context,
-          ).push(MaterialPageRoute(builder: (context) => const TradeScreen()));
+          ).push(MaterialPageRoute(builder: (context) => const BuyScreen()));
         },
         borderRadius: radius,
         child: ConstrainedBox(

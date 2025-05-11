@@ -18,7 +18,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future<void> _onLoadCoins(LoadCoin event, Emitter<HomeState> emit) async {
-    final coins = await repository.getCoin(['BTC', 'ETH', 'TON']);
+    final coins = await repository.getCoin([
+      'BTC',
+      'ETH',
+      'TON',
+      'BNB',
+      'SOL',
+      'DOGE',
+      'SUI',
+      'AVAX',
+      'FTM',
+      'INJ',
+      'SHIB',
+    ]);
 
     final balance = await repository.getBalance();
     final portfolio = await repository.getPortfolio();
