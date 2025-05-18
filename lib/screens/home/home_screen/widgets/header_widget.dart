@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../res/theme.dart';
+import '../../../settings/settings_screen/settings_screen.dart';
 import '../../widgets/burger_button.dart';
 
 class HeaderWidget extends StatelessWidget {
@@ -13,7 +15,13 @@ class HeaderWidget extends StatelessWidget {
       children: [
         SvgPicture.asset(ProjectIcons.wemo),
         Spacer(),
-        BurgerButton(onTap: () {}),
+        BurgerButton(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const SettingScreen()),
+            );
+          },
+        ),
       ],
     );
   }
