@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../../res/theme.dart';
-import '../buy_screen/buy_screen.dart';
 
 class ButtonWidget extends StatelessWidget {
+  final GestureTapCallback onTap;
   final String title;
 
-  const ButtonWidget({super.key, required this.title});
+  const ButtonWidget({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -14,22 +14,20 @@ class ButtonWidget extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius,
       child: InkWell(
-        onTap: () {
-          Navigator.of(
-            context,
-          ).push(MaterialPageRoute(builder: (context) => const BuyScreen()));
-        },
+        onTap: onTap,
         borderRadius: radius,
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: 54),
+          constraints: BoxConstraints(maxHeight: 54, minWidth: double.infinity),
           child: DecoratedBox(
             decoration: BoxDecoration(color: ProjectColors.dark5),
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              child: Text(
-                title,
-                style: ProjectTextStyles.p1.copyWith(
-                  color: ProjectColors.light5,
+              child: Center(
+                child: Text(
+                  title,
+                  style: ProjectTextStyles.p1.copyWith(
+                    color: ProjectColors.light5,
+                  ),
                 ),
               ),
             ),

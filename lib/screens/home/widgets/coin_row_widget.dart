@@ -20,9 +20,11 @@ class CryptoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(
-          context,
-        ).push(MaterialPageRoute(builder: (context) => const CoinScreen()));
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => CoinScreen(coinName: name, price: price),
+          ),
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),

@@ -51,4 +51,5 @@ class ProjectIcons {
   static const String burger = 'assets/icons/burger.svg';
   static const String sell = 'assets/icons/sell.svg';
   static const String buy = 'assets/icons/buy.svg';
+  static const String arrow = 'assets/icons/arrow.svg';
 }
