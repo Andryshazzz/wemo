@@ -65,11 +65,11 @@ class _SellListState extends State<_SellList>
                 children: const [
                   Padding(
                     padding: EdgeInsets.only(right: 4),
-                    child: Placeholder(),
+                    child: Center(child: Text('Coming Soon')),
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 4),
-                    child: Placeholder(),
+                    child: Center(child: Text('Coming Soon')),
                   ),
                 ],
               ),
