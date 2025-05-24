@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../res/theme.dart';
+import '../controller/home_bloc.dart' show HomeBloc;
+import '../controller/home_event.dart';
 import '../widgets/button.dart';
 
 class CoinScreen extends StatefulWidget {
@@ -17,11 +20,43 @@ class CoinScreen extends StatefulWidget {
 
 class _CoinScreenState extends State<CoinScreen> {
   final TextEditingController _amountController = TextEditingController();
+  String? _errorMessage;
 
   @override
   void dispose() {
     super.dispose();
     _amountController.dispose();
+  }
+
+  void _buyCoin() {
+    final amount = double.tryParse(_amountController.text);
+    if (amount == null || amount <= 0) {
+      setState(() {
+        _errorMessage = 'Please enter a valid amount';
+      });
+      return;
+    }
+
+    final price = double.parse(widget.price);
+    final totalCost = price * amount;
+    final balance = context.read<HomeBloc>().state.balance;
+
+    if (totalCost > balance) {
+      setState(() {
+        _errorMessage = 'Insufficient balance';
+      });
+      return;
+    }
+
+    setState(() {
+      _errorMessage = null;
+    });
+
+    context.read<HomeBloc>().add(
+      BuyCoin(coinName: widget.coinName, price: price, amount: amount),
+    );
+
+    Navigator.of(context).pop();
   }
 
   @override
@@ -71,6 +106,9 @@ class _CoinScreenState extends State<CoinScreen> {
               CustomAmountField(
                 controller: _amountController,
                 onChanged: (value) {
+                  setState(() {
+                    _errorMessage = null;
+                  });
                   print('Entered amount: $value');
                 },
                 validator: (value) {
@@ -84,6 +122,13 @@ class _CoinScreenState extends State<CoinScreen> {
                   return null;
                 },
               ),
+              if (_errorMessage != null) ...[
+                const SizedBox(height: 8),
+                Text(
+                  _errorMessage!,
+                  style: ProjectTextStyles.p1.copyWith(color: ProjectColors.red),
+                ),
+              ],
               const SizedBox(height: 18),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -108,7 +153,7 @@ class _CoinScreenState extends State<CoinScreen> {
                 ),
               ),
               Spacer(),
-              ButtonWidget(title: 'Buy ${widget.coinName}', onTap: () {}),
+              ButtonWidget(title: 'Buy ${widget.coinName}', onTap: _buyCoin),
             ],
           ),
         ),

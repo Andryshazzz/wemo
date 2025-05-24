@@ -5,6 +5,7 @@ import '../../../res/theme.dart';
 import '../buy_screen/widgets/buy_coins_list.dart';
 import '../controller/home_bloc.dart';
 import '../controller/home_state.dart';
+import '../widgets/portfolio_list_widget.dart';
 import '../widgets/segmented_control_buttons.dart';
 import '../widgets/market_route.dart';
 
@@ -76,7 +77,9 @@ class _PortfolioListState extends State<_PortfolioList>
                         child:
                             portfolio.isEmpty
                                 ? MarketRoute()
-                                : CoinsListWidget(coins: state.coins),
+                                : PortfolioListWidget(
+                                  portfolio: state.portfolio,
+                                ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 4),

@@ -13,7 +13,7 @@ class Prefs {
   Future<void> updateCache(List<Coin> coins) async {
     final prefs = await _prefs;
     for (final coin in coins) {
-      await prefs.setDouble('coin_price_${coin.name}', coin.price);
+      await prefs.setDouble('coin_price_${coin.name}', coin.price.toDouble());
     }
   }
 
