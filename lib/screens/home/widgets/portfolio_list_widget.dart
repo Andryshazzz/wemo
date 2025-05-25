@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../res/theme.dart' show ProjectColors;
+import '../coin_sell_screen/coin_sell_screen.dart';
 import '../controller/home_bloc.dart';
 import '../controller/home_state.dart';
 import 'coin_row_widget.dart';
@@ -28,8 +29,20 @@ class PortfolioListWidget extends StatelessWidget {
                   final purchasePrice = portfolio[coinName]!;
                   return CryptoRow(
                     name: coinName,
-                    price: purchasePrice.toString(),
-                    previousPrices: '',
+                    //TO DO: correct price
+                    price: state.coins[index].price.toString(),
+                    previousPrices: purchasePrice.toInt().toString(),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder:
+                              (context) => CoinSellScreen(
+                                coinName: coinName,
+                                price: purchasePrice.toString(),
+                              ),
+                        ),
+                      );
+                    },
                   );
                 },
               ),
@@ -38,6 +51,5 @@ class PortfolioListWidget extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

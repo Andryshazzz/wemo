@@ -65,7 +65,7 @@ class _PortfolioListState extends State<_PortfolioList>
           ),
           SliverToBoxAdapter(
             child: SizedBox(
-              height: 360,
+              height: 650,
               child: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   final portfolio = state.portfolio;

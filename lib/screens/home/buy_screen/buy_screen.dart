@@ -85,7 +85,7 @@ class _BuyListState extends State<_BuyList>
             ),
             SliverToBoxAdapter(
               child: SizedBox(
-                height: 650,
+                height: 660,
                 child: BlocBuilder<HomeBloc, HomeState>(
                   builder: (context, state) {
                     if (state.isLoading) {

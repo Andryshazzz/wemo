@@ -1,31 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../res/theme.dart';
-import '../coin_screen/coin_screen.dart';
 
 class CryptoRow extends StatelessWidget {
   final String name;
   final String price;
   final String previousPrices;
   final Color? color;
+  final Function() onTap;
 
   const CryptoRow({
     required this.name,
     required this.price,
     required this.previousPrices,
+    required this.onTap,
     this.color,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => CoinScreen(coinName: name, price: price),
-          ),
-        );
-      },
+      onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
         child: Row(
