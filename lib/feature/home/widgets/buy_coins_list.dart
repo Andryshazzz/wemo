@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../data/models/coin.dart';
-import '../../../../res/theme.dart';
-import '../../coin_screen/coin_screen.dart';
-import '../../controller/home_bloc.dart';
-import '../../controller/home_state.dart';
-import '../../widgets/coin_row_widget.dart';
+import '../../../data/models/coin.dart';
+import '../../../res/theme.dart';
+import '../screens/coin_screen/coin_screen.dart';
+import '../controller/home_bloc.dart';
+import '../controller/home_state.dart';
+import 'coin_row_widget.dart';
 
 class CoinsListWidget extends StatelessWidget {
   final List<Coin> coins;

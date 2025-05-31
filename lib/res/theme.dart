@@ -52,4 +52,5 @@ class ProjectIcons {
   static const String sell = 'assets/icons/sell.svg';
   static const String buy = 'assets/icons/buy.svg';
   static const String arrow = 'assets/icons/arrow.svg';
+  static const String restart = 'assets/images/restart.png';
 }

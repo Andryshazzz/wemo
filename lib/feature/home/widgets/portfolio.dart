@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../res/theme.dart';
 import '../controller/home_bloc.dart';
 import '../controller/home_state.dart';
-import '../portfolio_screen/potfolio_screen.dart';
+import '../screens/portfolio_screen/potfolio_screen.dart';
 
 class PortfolioWidget extends StatelessWidget {
   const PortfolioWidget({super.key});

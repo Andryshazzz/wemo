@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../res/theme.dart';
+import '../../../../res/theme.dart';
 import '../coin_screen/coin_screen.dart';
-import '../controller/home_bloc.dart' show HomeBloc;
-import '../controller/home_event.dart';
-import '../widgets/button.dart';
+import '../../controller/home_bloc.dart' show HomeBloc;
+import '../../controller/home_event.dart';
+import '../../widgets/button.dart';
 
 class CoinSellScreen extends StatefulWidget {
   final String coinName;

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../res/theme.dart';
-import '../buy_screen/widgets/buy_coins_list.dart';
-import '../controller/home_bloc.dart';
-import '../controller/home_state.dart';
-import '../widgets/portfolio_list_widget.dart';
-import '../widgets/segmented_control_buttons.dart';
-import '../widgets/market_route.dart';
+import '../../../../res/theme.dart';
+import '../../widgets/buy_coins_list.dart';
+import '../../controller/home_bloc.dart';
+import '../../controller/home_state.dart';
+import '../../widgets/portfolio_list_widget.dart';
+import '../../widgets/segmented_control_buttons.dart';
+import '../../widgets/market_route.dart';
 
 class PortfolioScreen extends StatelessWidget {
   const PortfolioScreen({super.key});

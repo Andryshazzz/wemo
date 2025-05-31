@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../res/theme.dart';
-import '../buy_screen/buy_screen.dart';
+import '../screens/buy_screen/buy_screen.dart';
 import 'button.dart';
 
 class MarketRoute extends StatelessWidget {

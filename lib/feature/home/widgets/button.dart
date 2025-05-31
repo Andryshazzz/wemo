@@ -16,18 +16,15 @@ class ButtonWidget extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         borderRadius: radius,
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: 54, minWidth: double.infinity),
-          child: DecoratedBox(
-            decoration: BoxDecoration(color: ProjectColors.dark5),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-              child: Center(
-                child: Text(
-                  title,
-                  style: ProjectTextStyles.p1.copyWith(
-                    color: ProjectColors.light5,
-                  ),
+        child: DecoratedBox(
+          decoration: BoxDecoration(color: ProjectColors.dark5),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 16),
+            child: Center(
+              child: Text(
+                title,
+                style: ProjectTextStyles.p1.copyWith(
+                  color: ProjectColors.light5,
                 ),
               ),
             ),

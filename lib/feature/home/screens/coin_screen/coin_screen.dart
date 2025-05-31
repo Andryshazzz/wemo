@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../res/theme.dart';
-import '../controller/home_bloc.dart' show HomeBloc;
-import '../controller/home_event.dart';
-import '../widgets/button.dart';
+import '../../../../res/theme.dart';
+import '../../controller/home_bloc.dart' show HomeBloc;
+import '../../controller/home_event.dart';
+import '../../widgets/button.dart';
 
 class CoinScreen extends StatefulWidget {
   final String coinName;

@@ -14,7 +14,8 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:wemo/data/source/local/prefs.dart' as _i874;
 import 'package:wemo/data/source/network/api_client.dart' as _i80;
 import 'package:wemo/repos/home_repo.dart' as _i136;
-import 'package:wemo/screens/home/controller/home_bloc.dart' as _i429;
+
+import '../feature/home/controller/home_bloc.dart' as _i429;
 
 extension GetItInjectableX on _i174.GetIt {
   // initializes the registration of main-scope dependencies inside of GetIt

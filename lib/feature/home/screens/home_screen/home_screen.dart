@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/models/coin.dart';
-import '../../../res/theme.dart';
-import '../controller/home_bloc.dart';
-import '../controller/home_event.dart';
-import '../controller/home_state.dart';
-import '../widgets/coins_expansion.dart';
-import '../widgets/portfolio.dart';
-import '../widgets/trade.dart';
-import 'widgets/header_widget.dart';
+import '../../../../data/models/coin.dart';
+import '../../../../res/theme.dart';
+import '../../controller/home_bloc.dart';
+import '../../controller/home_event.dart';
+import '../../controller/home_state.dart';
+import '../../widgets/coins_expansion.dart';
+import '../../widgets/portfolio.dart';
+import '../../widgets/restarting.dart';
+import '../../widgets/trade.dart';
+import '../../widgets/header_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             }
             if (state.coins.isEmpty) {
-              return const Text('ой-ой');
+              return const RestartingWidget();
             }
             return _CoinsList(coins: state.coins);
           },
@@ -55,14 +56,13 @@ class _CoinsListState extends State<_CoinsList> {
 
   @override
   Widget build(BuildContext context) {
+    final homeBloc = context.read<HomeBloc>();
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: _basePadding),
       child: RefreshIndicator(
         onRefresh: () async {
-          context.read<HomeBloc>().add(LoadCoin());
-          await context.read<HomeBloc>().stream.firstWhere(
-            (state) => !state.isLoading,
-          );
+          homeBloc.add(LoadCoin());
+          await homeBloc.stream.firstWhere((state) => !state.isLoading);
         },
         elevation: 0,
         color: ProjectColors.black,
@@ -75,15 +75,15 @@ class _CoinsListState extends State<_CoinsList> {
           slivers: [
             SliverPadding(
               padding: EdgeInsets.all(_basePadding),
-              sliver: SliverToBoxAdapter(child: HeaderWidget()),
+              sliver: SliverToBoxAdapter(child: const HeaderWidget()),
             ),
-            SliverToBoxAdapter(child: PortfolioWidget()),
+            SliverToBoxAdapter(child: const PortfolioWidget()),
             SliverPadding(
               padding: EdgeInsets.only(top: _basePadding / 2),
-              sliver: SliverToBoxAdapter(child: TradeWidget()),
+              sliver: SliverToBoxAdapter(child: const TradeWidget()),
             ),
             SliverPadding(
-              padding: EdgeInsets.only(top: _basePadding, bottom: _basePadding),
+              padding: EdgeInsets.symmetric(vertical: _basePadding),
               sliver: SliverToBoxAdapter(
                 child: ExpansionWidget(title: 'Coins', coins: widget.coins),
               ),

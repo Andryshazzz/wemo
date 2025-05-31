@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../res/theme.dart';
-import '../buy_screen/buy_screen.dart';
+import '../screens/buy_screen/buy_screen.dart';
 import '../controller/home_bloc.dart';
-import '../sell_screen/sell_screen.dart';
+import '../screens/sell_screen/sell_screen.dart';
 
 class TradeWidget extends StatelessWidget {
   const TradeWidget({super.key});

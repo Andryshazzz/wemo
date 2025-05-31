@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../res/theme.dart' show ProjectColors;
-import '../coin_sell_screen/coin_sell_screen.dart';
+import '../screens/coin_sell_screen/coin_sell_screen.dart';
 import '../controller/home_bloc.dart';
 import '../controller/home_state.dart';
 import 'coin_row_widget.dart';
