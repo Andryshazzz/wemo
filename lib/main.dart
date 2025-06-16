@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -8,11 +10,11 @@ import 'feature/home/screens/home_screen/home_screen.dart';
 import 'res/dependencies.dart';
 import 'res/theme.dart';
 
-void main() {
+void main() => runZonedGuarded<void>(() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
-  runApp(const Wemo());
-}
+  runApp(Wemo());
+}, (e, st) => print('$e, $st'));
 
 class Wemo extends StatelessWidget {
   const Wemo({super.key});
