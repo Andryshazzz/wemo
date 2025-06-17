@@ -14,7 +14,7 @@ void main() => runZonedGuarded<void>(() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies();
   runApp(Wemo());
-}, (e, st) => print('$e, $st'));
+}, (e, st) => logger.handle(e, st, 'init error'));
 
 class Wemo extends StatelessWidget {
   const Wemo({super.key});

@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:talker_dio_logger/talker_dio_logger.dart';
 
+import '../../../res/dependencies.dart';
 import '../../models/coin.dart';
 
 @singleton
@@ -13,6 +15,15 @@ class ApiClient {
 
   Future<void> _initDio() async {
     const apiUrl = 'https://min-api.cryptocompare.com';
+
+    _dio.interceptors.add(
+      TalkerDioLogger(
+        settings: const TalkerDioLoggerSettings(
+          printRequestHeaders: true,
+          printResponseHeaders: true,
+        ),
+      ),
+    );
 
     _dio.options
       ..baseUrl = apiUrl
