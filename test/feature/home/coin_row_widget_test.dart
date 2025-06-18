@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:wemo/data/models/coin.dart';
 import 'package:wemo/feature/home/controller/home_bloc.dart';
@@ -12,7 +13,8 @@ import 'package:wemo/res/theme.dart';
 void main() {
   late MockHomeBloc mockHomeBloc;
 
-  setUp(() {
+  setUp(() async {
+    await loadAppFonts();
     mockHomeBloc = MockHomeBloc();
   });
   group('CoinRowWidget', () {
@@ -41,6 +43,10 @@ void main() {
 
       final cryptoRow = widgetTester.widget<CryptoRow>(find.byType(CryptoRow));
       expect(cryptoRow.color, ProjectColors.green);
+      await expectLater(
+        find.byType(CryptoRow),
+        matchesGoldenFile('teml/coin_row_widget.png'),
+      );
     });
   });
 }

@@ -21,6 +21,7 @@ dependencies:
   talker_bloc_logger: ^4.8.4
   mocktail: ^1.0.4
   bloc_test: ^10.0.0
+  golden_toolkit: ^0.15.0
   shared_preferences: ^2.5.3
   json_annotation: 4.9.0
   get_it: ^8.0.3
