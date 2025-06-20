@@ -9,7 +9,11 @@ class ExpansionWidget extends StatelessWidget {
   final List<Coin> coins;
   final String title;
 
-  const ExpansionWidget({super.key, required this.title, required this.coins});
+  const ExpansionWidget({
+    super.key,
+    required this.title,
+    required this.coins,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +33,7 @@ class ExpansionWidget extends StatelessWidget {
             expansionTileTheme: const ExpansionTileThemeData(),
           ),
           child: ExpansionTile(
+            key: const Key('coins_expansion_tile'),
             tilePadding: EdgeInsets.symmetric(horizontal: 16),
             collapsedBackgroundColor: Colors.transparent,
             backgroundColor: Colors.transparent,
