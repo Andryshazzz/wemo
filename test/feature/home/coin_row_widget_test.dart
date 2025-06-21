@@ -88,6 +88,7 @@ void main() {
           ),
         ),
       );
+      when(() => mockHomeBloc.close()).thenAnswer((_) async => Future.value());
     }
 
     Widget buildTestWidget() {
